@@ -1,29 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-let users = {
-  1: {
-    id: '1',
-    username: 'Robin Wieruch',
-  },
-  2: {
-    id: '2',
-    username: 'Dave Davids',
-  },
-};
-
-let messages = {
-  1: {
-    id: '1',
-    text: 'Hello World',
-    userId: '1',
-  },
-  2: {
-    id: '2',
-    text: 'By World',
-    userId: '2',
-  },
-};
+// const models = require('../models');
 
 /* GET users listing. */
 // router.get('/', function(req, res, next) {
@@ -32,11 +10,13 @@ let messages = {
 
 router.get('/', (req, res) => {
   // return res.send('GET HTTP method on user resource');
-  return res.send(Object.values(users));
+  // return res.send(Object.values(users));
+  return res.send(Object.values(req.context.models.users));
 });
 
 router.get('/:userId', (req, res) => {
-  return res.send(users[req.params.userId]);
+  // return res.send(users[req.params.userId]);
+  return res.send(req.context.models.users[req.params.userId]);
 });
 
 router.post('/', (req, res) => {
